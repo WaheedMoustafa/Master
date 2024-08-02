@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_app/providers/theme_provider.dart';
 import 'package:islami_app/ui/utils/color_app.dart';
+import 'package:provider/provider.dart';
 import '../../../models/screen_arg.dart';
 import '../../../utils/images_app.dart';
 
@@ -17,18 +19,20 @@ class QuranContent extends StatefulWidget {
 class _QuranContentState extends State<QuranContent> {
    String suraContent = '' ;
    late ScreenArgs args ;
+   late ThemeProvider themeProvider ;
 
   @override
 
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of(context);
     args = ModalRoute.of(context)!.settings.arguments as ScreenArgs;
     if(suraContent.isEmpty){
       fileContent();
     }
     return Container(
-      decoration:  const BoxDecoration(
+      decoration:   BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.defaultImg),
+            image: AssetImage(themeProvider.isDarkThemeEnabled? AppImages.darkBG: AppImages.defaultImg),
           )
       ),
       child: Scaffold(
@@ -36,7 +40,7 @@ class _QuranContentState extends State<QuranContent> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.transparent,
-          title: Text('${args.name}',style: TextStyle(fontSize: 35),),
+          title: Text('${args.name}',style: TextStyle(fontSize: 35,color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,),),
         ),
         body: Container(
           width: 354,
@@ -45,11 +49,11 @@ class _QuranContentState extends State<QuranContent> {
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18),
-            color: Colors.white,
+            color: themeProvider.isDarkThemeEnabled? AppColors.primaryDark: AppColors.white,
           ),
           child: SingleChildScrollView(
             child: Text(suraContent,
-              style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400),
+              style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20 , fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
               ),

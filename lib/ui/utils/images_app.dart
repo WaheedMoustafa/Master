@@ -16,5 +16,6 @@ import 'package:flutter/material.dart';
    static const String quranScr = 'assets/images/qur2an_screen_logo.png' ;
    static const String radioImg = 'assets/images/radio_image.png' ;
    static const String splash = 'assets/images/splash.png' ;
+   static const String splashDark = 'assets/images/splashDark.png' ;
 
  }
