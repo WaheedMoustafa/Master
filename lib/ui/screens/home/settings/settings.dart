@@ -21,8 +21,8 @@ class _IslamiSettingsState extends State<IslamiSettings> {
 
   @override
   Widget build(BuildContext context) {
-    LanguageProvider languageProvider = Provider.of(context);
-    ThemeProvider themeProvider = Provider.of(context);
+     languageProvider = Provider.of(context);
+     themeProvider = Provider.of(context);
     return Scaffold(
       backgroundColor: AppColors.transparent,
       body: Padding(
@@ -59,6 +59,7 @@ class _IslamiSettingsState extends State<IslamiSettings> {
                     value: themeProvider.isDarkThemeEnabled,
                     onChanged: (newValue){
                       themeProvider.newTheme = newValue?ThemeMode.dark : ThemeMode.light ;
+                       setData();
                       setState(() {
 
                       });
@@ -70,7 +71,7 @@ class _IslamiSettingsState extends State<IslamiSettings> {
       ),
     );
   }
-  void setData() async{
+  Future <void> setData() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('isDark' , themeProvider.isDarkThemeEnabled);
     prefs.setString('language',languageProvider.currentLanguage);
