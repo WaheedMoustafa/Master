@@ -9,11 +9,11 @@ class LanguageProvider extends ChangeNotifier{
 
   set setNewLanguage(String newLanguage){
     currentLanguage = newLanguage;
-    _saveData();
+    _saveLanguage();
     notifyListeners();
   }
 
-  Future <void> _saveData() async{
+  Future <void> _saveLanguage() async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('language',currentLanguage);
 
