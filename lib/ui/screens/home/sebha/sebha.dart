@@ -17,7 +17,7 @@ class Sebha extends StatefulWidget {
 
 class _SebhaState extends State<Sebha> with SingleTickerProviderStateMixin{
   int counter = 0 ;
-  List<String> zekrList = ["سبحان الله" , "الحمدلله" , " الله اكبر " , " لا حول ولا قوة إلا بالله" ];
+  List<String> zekrList = ["سبحان الله" , "الحمدلله" , " الله اكبر " , " لا حول ولا قوة إلا بالله" , " "];
   int index = 0 ;
   late AnimationController controller ;
   late Animation<double> animation ;
@@ -97,10 +97,19 @@ class _SebhaState extends State<Sebha> with SingleTickerProviderStateMixin{
   }
 
   void countIndex(){
-    counter >= 33 ?
-    index < zekrList.length-1 ?
-     counter = 0 & index++ : index = 0
-        : counter ++ ;
+    counter++;
+    if(counter >= 34){
+      counter = 0;
+      index++;
+      if( index > 3){
+       index = 0 ;
+     }
+    }
+
+  //  counter >= 33 ?
+  //  index < zekrList.length-1 ?
+  //   counter = 0 & index++ : index = 0
+  //      : counter ++ ;
 
   }
     }

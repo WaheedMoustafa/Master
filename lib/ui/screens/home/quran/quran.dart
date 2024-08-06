@@ -45,7 +45,31 @@ class _QuranState extends State<Quran> {
                           color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
                     ],),
                     buildDivider(),
-                    buildSuraList(),
+                    Expanded(
+            flex: 7,
+            child: ListView.builder(
+                itemCount: Constants.suraNames.length,
+                itemBuilder: (context , index){
+                  return InkWell(
+                    onTap: (){
+                      ScreenArgs arguments = ScreenArgs(
+                          fileName:"${index+1}.txt" ,
+                          name:Constants.suraNames[index] );
+                      Navigator.pushNamed(context, QuranContent.routeName,arguments: arguments);
+
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(child: Text(Constants.suraNames[index],
+                          style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
+                        Expanded(child: Text(Constants.versesNumber[index].toString(),
+                          style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
+                      ],
+                    ),
+                  );
+                }
+
+            ),),
                   ],
                 ),
 
@@ -64,31 +88,31 @@ class _QuranState extends State<Quran> {
       );
 
   }
-  Expanded buildSuraList()=> Expanded(
-    flex: 7,
-    child: ListView.builder(
-      itemCount: Constants.suraNames.length,
-      itemBuilder: (context , index){
-        return InkWell(
-          onTap: (){
-            ScreenArgs arguments = ScreenArgs(
-                fileName:"${index+1}.txt" ,
-                name:Constants.suraNames[index] );
-            Navigator.pushNamed(context, QuranContent.routeName,arguments: arguments);
-
-          },
-          child: Row(
-            children: [
-              Expanded(child: Text(Constants.suraNames[index],
-                style: TextStyle(color: AppColors.primary,fontSize: 20),textAlign: TextAlign.center,)),
-              Expanded(child: Text(Constants.versesNumber[index].toString(),
-                style: TextStyle(color: AppColors.primary,fontSize: 20),textAlign: TextAlign.center,)),
-            ],
-          ),
-        );
-      }
-
-  ),);
+ //  Expanded buildSuraList()=> Expanded(
+ //    flex: 7,
+ //    child: ListView.builder(
+ //      itemCount: Constants.suraNames.length,
+ //      itemBuilder: (context , index){
+ //        return InkWell(
+ //          onTap: (){
+ //            ScreenArgs arguments = ScreenArgs(
+ //                fileName:"${index+1}.txt" ,
+ //                name:Constants.suraNames[index] );
+ //            Navigator.pushNamed(context, QuranContent.routeName,arguments: arguments);
+ //
+ //          },
+ //          child: Row(
+ //            children: [
+ //              Expanded(child: Text(Constants.suraNames[index],
+ //                style: TextStyle(color: AppColors.primary,fontSize: 20),textAlign: TextAlign.center,)),
+ //              Expanded(child: Text(Constants.versesNumber[index].toString(),
+ //                style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
+ //            ],
+ //          ),
+ //        );
+ //      }
+ //
+ //   ),);
   Divider buildDivider()=> const Divider(thickness: 3,color: AppColors.primary,);
   Expanded buildImage()=> Expanded(flex : 3 , child: Container(child: Image(image: AssetImage(AppImages.quranScr))));
 

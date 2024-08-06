@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageProvider extends ChangeNotifier{
-  String currentLanguage = "en";
+  String pref;
+  LanguageProvider({required this.pref});
+
+  late String currentLanguage = pref;
 
   set setNewLanguage(String newLanguage){
     currentLanguage = newLanguage;
+    _saveData();
     notifyListeners();
   }
 
-   LanguageProvider({required String pref});
+  Future <void> _saveData() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('language',currentLanguage);
+
+  }
 
 }

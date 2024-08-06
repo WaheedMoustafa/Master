@@ -53,7 +53,7 @@ class _HadethContentState extends State<HadethContent> {
           ),
           child: SingleChildScrollView(
             child: Text(hadethContent,
-              style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,),
+              style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w400, color: themeProvider.isDarkThemeEnabled? AppColors.accentDark: AppColors.accent,),
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
             ),

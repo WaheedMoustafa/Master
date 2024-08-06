@@ -43,7 +43,29 @@ class _AhadethState extends State<Ahadeth> {
                         style: TextStyle(color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
                     ],),
                     buildDivider(),
-                    buildSuraList(),
+                    Expanded(
+            flex: 7,
+            child: ListView.builder(
+                itemCount: 49,
+                itemBuilder: (context , index){
+                  return InkWell(
+                    onTap: (){
+                      ScreenArgs arguments = ScreenArgs(
+                          fileName:"${index+1}.txt" ,
+                          name: context.appLocalizations.hadeth +" ${index+1}"  );
+                      Navigator.pushNamed(context, HadethContent.routeName,arguments: arguments);
+
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(child: Text(context.appLocalizations.hadeth+"${index+1}",
+                          style: TextStyle(color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
+                      ],
+                    ),
+                  );
+                }
+
+            ),),
                   ],
                 ),
 
@@ -60,29 +82,29 @@ class _AhadethState extends State<Ahadeth> {
     );
 
   }
-  Expanded buildSuraList()=> Expanded(
-    flex: 7,
-    child: ListView.builder(
-        itemCount: 49,
-        itemBuilder: (context , index){
-          return InkWell(
-            onTap: (){
-              ScreenArgs arguments = ScreenArgs(
-                  fileName:"${index+1}.txt" ,
-                  name: context.appLocalizations.hadeth +" ${index+1}" );
-              Navigator.pushNamed(context, HadethContent.routeName,arguments: arguments);
+// Expanded buildSuraList()=> Expanded(
+//   flex: 7,
+//   child: ListView.builder(
+//       itemCount: 49,
+//       itemBuilder: (context , index){
+//         return InkWell(
+//           onTap: (){
+//             ScreenArgs arguments = ScreenArgs(
+//                 fileName:"${index+1}.txt" ,
+//                 name: context.appLocalizations.hadeth +" ${index+1}"  );
+//             Navigator.pushNamed(context, HadethContent.routeName,arguments: arguments);
 
-            },
-            child: Row(
-              children: [
-                Expanded(child: Text(context.appLocalizations.hadeth+"${index+1}",
-                  style: TextStyle(color: AppColors.primary,fontSize: 20),textAlign: TextAlign.center,)),
-              ],
-            ),
-          );
-        }
+//           },
+//           child: Row(
+//             children: [
+//               Expanded(child: Text(context.appLocalizations.hadeth+"${index+1}",
+//                 style: TextStyle(color: themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20),textAlign: TextAlign.center,)),
+//             ],
+//           ),
+//         );
+//       }
 
-    ),);
+//   ),);
   Divider buildDivider()=> const Divider(thickness: 3,color: AppColors.primary,);
   Expanded buildImage()=> Expanded(flex : 3 , child: Container(child: Image(image: AssetImage(AppImages.hadeth))));
 

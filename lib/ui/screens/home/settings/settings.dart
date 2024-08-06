@@ -59,7 +59,6 @@ class _IslamiSettingsState extends State<IslamiSettings> {
                     value: themeProvider.isDarkThemeEnabled,
                     onChanged: (newValue){
                       themeProvider.newTheme = newValue?ThemeMode.dark : ThemeMode.light ;
-                       setData();
                       setState(() {
 
                       });
@@ -71,11 +70,6 @@ class _IslamiSettingsState extends State<IslamiSettings> {
       ),
     );
   }
-  Future <void> setData() async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isDark' , themeProvider.isDarkThemeEnabled);
-    prefs.setString('language',languageProvider.currentLanguage);
 
-  }
 
 }

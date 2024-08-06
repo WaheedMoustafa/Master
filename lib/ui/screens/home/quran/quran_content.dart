@@ -53,7 +53,7 @@ class _QuranContentState extends State<QuranContent> {
           ),
           child: SingleChildScrollView(
             child: Text(suraContent,
-              style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.white: AppColors.accent,fontSize: 20 , fontWeight: FontWeight.w400),
+              style: TextStyle(color:themeProvider.isDarkThemeEnabled? AppColors.accentDark: AppColors.accent,fontSize: 20 , fontWeight: FontWeight.w400),
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
               ),
