@@ -106,11 +106,6 @@ class _SebhaState extends State<Sebha> with SingleTickerProviderStateMixin{
      }
     }
 
-  //  counter >= 33 ?
-  //  index < zekrList.length-1 ?
-  //   counter = 0 & index++ : index = 0
-  //      : counter ++ ;
-
   }
     }
 
