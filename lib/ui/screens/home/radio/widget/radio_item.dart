@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 class RadioItem extends StatefulWidget {
   final Radios radios;
   final AudioPlayer player;
-  const RadioItem({super.key,required this.radios , required this.player});
+  const RadioItem({super.key,required this.radios , required this.player,});
 
   @override
   State<RadioItem> createState() => _RadioItemState();
@@ -31,10 +31,6 @@ class _RadioItemState extends State<RadioItem> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
-                    onTap: (){},
-                    child:  Icon(Icons.skip_previous,size: 45,color: themeProvider.isDarkThemeEnabled?
-                    Colors.white : const Color(0xff6A421C) ,)),
-                InkWell(
                     onTap: (){
                       setState(() {
                         isPlayed?
@@ -46,9 +42,6 @@ class _RadioItemState extends State<RadioItem> {
                       isPlayed?  Icons.pause:  Icons.play_arrow_outlined ,
                       size: 45, color: themeProvider.isDarkThemeEnabled? Colors.white : const Color(0xff6A421C) ,)
                 ),
-                InkWell(
-                    onTap: (){},
-                    child: Icon(Icons.skip_next,size: 45,  color: themeProvider.isDarkThemeEnabled? Colors.white : const Color(0xff6A421C)  )),
 
               ],
             ),

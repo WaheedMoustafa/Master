@@ -7,14 +7,24 @@ import 'package:islami_app/data/model/radios.dart';
 import 'package:islami_app/ui/screens/home/radio/widget/radio_item.dart';
 
 
-class RadioIslami extends StatelessWidget {
+
+class RadioIslami extends StatefulWidget {
    RadioIslami({super.key});
   static const String routeName = 'radio';
-  AudioPlayer audioPlayer = AudioPlayer();
 
   @override
+  State<RadioIslami> createState() => _RadioIslamiState();
+}
+
+class _RadioIslamiState extends State<RadioIslami> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+   bool isPlayed = false;
+
+   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+
+     return FutureBuilder(
       future: getRadio(),
         builder: (context ,snapshot){
           if(snapshot.connectionState == ConnectionState.waiting){
@@ -29,7 +39,7 @@ class RadioIslami extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: radio.length,
               itemBuilder: (context , index){
-                return RadioItem(radios :radio[index] , player: audioPlayer,);
+                return RadioItem(radios: radio[index], player: audioPlayer);
               });
           }
         },
@@ -37,6 +47,7 @@ class RadioIslami extends StatelessWidget {
 
     );
   }
+
 
   Future< List<Radios>> getRadio () async{
     try{
